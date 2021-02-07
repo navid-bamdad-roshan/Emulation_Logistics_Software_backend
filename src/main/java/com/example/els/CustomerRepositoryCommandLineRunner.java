@@ -4,8 +4,8 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-import com.example.els.Customer.Address;
-import com.example.els.Customer.AddressRepository;
+import com.example.els.Address.Address;
+import com.example.els.Address.AddressRepository;
 import com.example.els.Customer.Customer;
 import com.example.els.Customer.CustomerRepository;
 

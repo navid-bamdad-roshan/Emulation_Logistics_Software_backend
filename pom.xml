@@ -54,6 +54,12 @@
 			<version>8.0.19</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
 
 	</dependencies>
 

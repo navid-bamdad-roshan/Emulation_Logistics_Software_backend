@@ -1,5 +1,12 @@
 package com.example.els.Customer;
 
+
+import com.example.els.Address.Address;
+import com.example.els.Address.AddressRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
 
-    // @Autowired
-    // private CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
 
     @Autowired
@@ -29,19 +37,41 @@ public class CustomerController {
     @Autowired
     private AddressRepository addressRepository;
 
+    ObjectMapper objectMapper = new ObjectMapper();
+
     // @PutMapping("/add-customer")
     // public void addCustomer(){
 
     // }
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("")
-    public @ResponseBody String addCustomer(@RequestBody Customer s){
-        System.out.println(s);
-
-        Long insertedCustomerId = 400L;
-        // return inserted customer id
-        return (insertedCustomerId.toString());
+    public @ResponseBody String addCustomer(@RequestBody String jsonCustomer) throws Exception, JsonMappingException, JsonProcessingException{
+        
+        System.out.println(jsonCustomer.toString());
+        
+        try{
+            Customer customer = objectMapper.readValue(jsonCustomer, Customer.class);
+            List <Address> addresses = customer.getAddresses();
+            for (int i=0; i<addresses.size(); i++){
+                addresses.get(i).setCustomer(customer);
+            }
+            customer.setAddresses(addresses);
+            //System.out.println(customer.toString());
+            customer = customerService.addNewCustomer(customer);
+            // return inserted customer id
+            return (customer.getId().toString());
+        //}catch(JsonMappingException e){
+        //    throw e;
+            //return "-1";
+        //}catch(JsonProcessingException e){
+        //    throw e;
+            //return "-1";
+        }catch(Exception e){
+            throw e;
+            //return "-1";
+        }
     }
+
     // {
     //     "firstName": "Navid",
     //      "lastName": "Bamdad Roshan",
@@ -75,64 +105,56 @@ public class CustomerController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public String getCustomer(@RequestParam(defaultValue = "all") String id){
-        
-        Customer customer = new Customer("navid", "bamdad roshan", "nbamdadroshan@yahoo.com", "+95874663", List.of());
-
-        Address address = new Address("Estonia", "Tartumaa", "Tartu", "987654", "fdsasdg", customer);
-
-        customer.setAddresses(List.of(address,  new Address("Estonia", "Tartumaa", "Tartu", "987654", "fdsasdg", customer)));
-        customerRepository.save(customer);
-        //addressRepository.save(address);
-        System.out.println("New customer is created "+ customer);
-        return customer.toString();
-        
-        //return ("customer "+id.toString()+" from spring");
+    public String getCustomer(){
+        List<Customer> customers = customerService.getAllCustomers();
+        return customers.toString();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/update/{id}")
-    public String getCustomerUpdate(@PathVariable("id") Long id){
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/update/{id}")
+    // public String getCustomerUpdate(@PathVariable("id") Long id){
         
-        Customer customer = customerRepository.findById(id).get();
+    //     Customer customer = customerRepository.findById(id).get();
 
-        Address address = new Address("Estonia", "Tartumaa", "Tartu", "987654", "fdsasdg", customer);
+    //     Address address = new Address("Estonia", "Tartumaa", "Tartu", "987654", "fdsasdg", customer);
 
 
-        customer.getAddresses().add(address);
-        customerRepository.save(customer);
-        //addressRepository.save(address);
-        System.out.println("New customer is updated "+ customer);
-        return customer.toString();
+    //     customer.getAddresses().add(address);
+    //     customerRepository.save(customer);
+    //     //addressRepository.save(address);
+    //     System.out.println("New customer is updated "+ customer);
+    //     return customer.toString();
         
-        //return ("customer "+id.toString()+" from spring");
-    }
+    //     //return ("customer "+id.toString()+" from spring");
+    // }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/address/{id}")
-    public String getAddress(@PathVariable("id") Long id){
+    // @CrossOrigin(origins = "http://localhost:3000")
+    // @GetMapping("/address/{id}")
+    // public String getAddress(@PathVariable("id") Long id){
 
-        Address address = addressRepository.findById(id).get();
+    //     Address address = addressRepository.findById(id).get();
 
-        address.setAddress("A good address");
-        addressRepository.save(address);
+    //     address.setAddress("A good address");
+    //     addressRepository.save(address);
 
-        //addressRepository.save(address);
-        System.out.println("New customer is updated "+ address);
-        return address.toString();
+    //     //addressRepository.save(address);
+    //     System.out.println("New customer is updated "+ address);
+    //     return address.toString();
         
-        //return ("customer "+id.toString()+" from spring");
-    }
+    //     //return ("customer "+id.toString()+" from spring");
+    // }
 
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public String getCustomerOne(@PathVariable("id") Long id){
-        //Customer customer = new Customer("navid", "bamdad roshan", "nbamdadroshan@yahoo.com", "+95874663", List.of());
-        Optional<Customer> customer = customerRepository.findById(id);
-        System.out.println("Customer is retrieved "+ customer);
+        Customer customer;
+        try{
+            customer = customerService.getCustomerById(id);
+        }catch(Exception e){
+            return e.getMessage().toString();
+        }
         return customer.toString();
-        // return new Customer(id, "navid", "bamdadroshan", "nbamdadroshan@yahoo.com", "123456789", List.of()).toString();
     }
 }

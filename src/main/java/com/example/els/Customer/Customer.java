@@ -1,4 +1,6 @@
 package com.example.els.Customer;
+import com.example.els.Address.Address;
+
 
 import java.util.List;
 
@@ -21,9 +23,12 @@ public class Customer {
 
     public Customer(Long id, String firstName, String lastName, String email, String phone, List<Address> addresses) {
         super();
-        this.id = id;
+        if (id != null){
+            System.out.println("id is assigned for customer ppppppppppppppppppppppppppppppppppppppp");
+            this.id = id;
+        }
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.addresses = addresses;
@@ -32,7 +37,7 @@ public class Customer {
     public Customer(String firstName, String lastName, String email, String phone, List<Address> addresses) {
         super();
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.addresses = addresses;
@@ -48,7 +53,7 @@ public class Customer {
     private String firstName;
 
     @Column(name="last_name")
-    private String LastName;
+    private String lastName;
 
     @Column(name="email")
     private String email;
@@ -79,11 +84,11 @@ public class Customer {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -112,7 +117,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "{\n"+"id=" + id + ", \nFirst Name=" + firstName + ", \nLast Name=" + LastName + ", \nphone=" + phone + ", \nemail=" + email  + ", \naddresses=" + addresses.toString() + "}" ;
+        return "{\n"+"id=" + id + ", \nFirst Name=" + firstName + ", \nLast Name=" + lastName + ", \nphone=" + phone + ", \nemail=" + email  + ", \naddresses=" + addresses.toString() + "}" ;
     }
 
 

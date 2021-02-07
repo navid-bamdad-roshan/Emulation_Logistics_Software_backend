@@ -1,8 +1,9 @@
-package com.example.els.Customer;
+package com.example.els.Address;
+
+import com.example.els.Customer.Customer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,9 +17,10 @@ import javax.persistence.Table;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "address_id")
     private Long id;
+
     private String country;
     private String state;
     private String city;
@@ -46,7 +48,10 @@ public class Address {
 
     public Address(Long id, String country, String state, String city, String postalCode, String address, Customer customer) {
         super();
-        this.id = id;
+        if (id != null){
+            System.out.println("id is assigned for address ppppppppppppppppppppppppppppppppppppppp");
+            this.id = id;
+        }
         this.country = country;
         this.state = state;
         this.city = city;
@@ -85,14 +90,6 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getpostalCode() {
-        return postalCode;
-    }
-
-    public void setpostalCode(String postalCode) {
-        this.postalCode = postalCode;
     }
 
     public String getAddress() {
