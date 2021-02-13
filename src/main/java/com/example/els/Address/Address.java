@@ -2,6 +2,7 @@ package com.example.els.Address;
 
 import com.example.els.Customer.Customer;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="addresses")
 public class Address {
+
+
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -44,12 +47,12 @@ public class Address {
         this.postalCode = postalCode;
         this.address = address;
         this.customer = customer;
+
     }
 
     public Address(Long id, String country, String state, String city, String postalCode, String address, Customer customer) {
         super();
         if (id != null){
-            System.out.println("id is assigned for address ppppppppppppppppppppppppppppppppppppppp");
             this.id = id;
         }
         this.country = country;
@@ -58,6 +61,7 @@ public class Address {
         this.postalCode = postalCode;
         this.address = address;
         this.customer = customer;
+
     }
 
     public Long getId() {
@@ -102,8 +106,8 @@ public class Address {
 
     @Override
     public String toString() {
-        return "\n{\naddress=" + address + ", \ncity=" + city + ", \ncountry=" + country + ", \nid=" + id
-                + ", \npostalCode=" + postalCode + ", \nstate=" + state + "\n}";
+        return ("{\"address\":\"" + address + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"id\":\"" + id
+                + "\", \"postalCode\":\"" + postalCode + "\", \"state\":\"" + state + "\"}");
     }
 
     public String getPostalCode() {

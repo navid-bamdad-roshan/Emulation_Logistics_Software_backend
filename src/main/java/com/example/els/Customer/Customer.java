@@ -117,7 +117,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "{\n"+"id=" + id + ", \nFirst Name=" + firstName + ", \nLast Name=" + lastName + ", \nphone=" + phone + ", \nemail=" + email  + ", \naddresses=" + addresses.toString() + "}" ;
+        return "{\"id\":\"" + id + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"phone\":\"" + phone + "\",\"email\":\"" + email  + "\",\"addresses\":" + addresses.toString() + "}" ;
     }
 
 
