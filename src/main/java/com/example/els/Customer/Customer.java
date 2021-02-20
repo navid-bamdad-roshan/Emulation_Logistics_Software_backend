@@ -24,7 +24,6 @@ public class Customer {
     public Customer(Long id, String firstName, String lastName, String email, String phone, List<Address> addresses) {
         super();
         if (id != null){
-            System.out.println("id is assigned for customer ppppppppppppppppppppppppppppppppppppppp");
             this.id = id;
         }
         this.firstName = firstName;

@@ -106,7 +106,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return ("{\"address\":\"" + address + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"id\":\"" + id
+        return ("{\"id\":\"" + id.toString() + "\", \"address\":\"" + address + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"id\":\"" + id
                 + "\", \"postalCode\":\"" + postalCode + "\", \"state\":\"" + state + "\"}");
     }
 
