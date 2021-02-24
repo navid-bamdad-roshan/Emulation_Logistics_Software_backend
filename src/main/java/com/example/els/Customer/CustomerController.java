@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,20 @@ public class CustomerController {
             Customer customer = objectMapper.readValue(jsonCustomer, Customer.class);
             Customer updatedCustomer = customerService.updateCustomer(id, customer);
             return (updatedCustomer.toString());
+        }catch(Exception e){
+            return "-1";
+        }
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/{customerId}/address")
+    public @ResponseBody String addNewAddress(@PathVariable("customerId") Long customerId, @RequestBody String jsonAddress) throws Exception, JsonMappingException, JsonProcessingException{
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        try{
+            Address address = objectMapper.readValue(jsonAddress, Address.class);
+            Address createdAddress = customerService.addNewAddress(customerId, address);
+            return (createdAddress.toString());
         }catch(Exception e){
             return "-1";
         }

@@ -90,4 +90,25 @@ public class CustomerService {
         }
         throw new Exception("such address does not exist!");
     }
+
+
+    public Address addNewAddress(Long customerId, Address newAddress) throws Exception{
+        try{
+            Customer customer = customerRepository.findById(customerId).get();
+
+            List<Address> addresses = customer.getAddresses();
+            newAddress.setCustomer(customer);
+            addresses.add(newAddress);
+
+            customer.setAddresses(addresses);
+            
+            customerRepository.save(customer);
+
+            addresses = customer.getAddresses();
+            return addresses.get(addresses.size()-1);
+        }catch(Exception e){
+            throw e;
+        }
+        
+    }
 }
