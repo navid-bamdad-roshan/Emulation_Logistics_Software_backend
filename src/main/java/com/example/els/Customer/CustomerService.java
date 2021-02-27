@@ -1,6 +1,7 @@
 package com.example.els.Customer;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,5 +111,43 @@ public class CustomerService {
             throw e;
         }
         
+    }
+
+
+    public boolean deleteCustomer(Long customerId){
+        customerRepository.deleteById(customerId);
+        if (customerRepository.findById(customerId).isPresent()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+    public boolean deleteAddress(Long customerId, Long addressId){
+
+        try{
+            Customer customer = customerRepository.findById(customerId).get();
+            List<Address> addresses = customer.getAddresses();
+            for (int i=0; i<addresses.size(); i++){
+                if (addresses.get(i).getId() == addressId){
+                    addresses.remove(i);
+                }
+            }
+            customer.setAddresses(addresses);
+            customerRepository.save(customer);
+
+            customer = customerRepository.findById(customerId).get();
+            addresses = customer.getAddresses();
+            for (int i=0; i<addresses.size(); i++){
+                if (addresses.get(i).getId() == addressId){
+                    return false;
+                }
+            }
+            return true;
+
+        }catch(Exception e){
+            return false;
+        }
     }
 }

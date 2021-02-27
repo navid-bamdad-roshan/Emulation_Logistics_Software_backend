@@ -6,11 +6,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,7 +83,6 @@ public class CustomerController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/{customerId}/address")
     public @ResponseBody String addNewAddress(@PathVariable("customerId") Long customerId, @RequestBody String jsonAddress) throws Exception, JsonMappingException, JsonProcessingException{
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         try{
             Address address = objectMapper.readValue(jsonAddress, Address.class);
             Address createdAddress = customerService.addNewAddress(customerId, address);
@@ -129,4 +128,31 @@ public class CustomerController {
         }
         return customer.toString();
     }
+
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping("/{id}")
+    public String deleteCustomer(@PathVariable("id") Long id){
+        boolean result = customerService.deleteCustomer(id);
+        if (result == true){
+            return "ok";
+        }else{
+            return "error";
+        }
+    }
+
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping("/{customerId}/address/{addressId}")
+    public String deleteAddress(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId){
+        boolean result = customerService.deleteAddress(customerId, addressId);
+        if (result == true){
+            return "ok";
+        }else{
+            return "error";
+        }
+    }
+
 }
