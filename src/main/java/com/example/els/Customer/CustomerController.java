@@ -2,14 +2,15 @@ package com.example.els.Customer;
 
 
 import com.example.els.Address.Address;
+import com.example.els.Address.AddressDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,101 +38,86 @@ public class CustomerController {
     // @Autowired
     // private AddressRepository addressRepository;
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ModelMapper modelMapper;
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping("")
-    public @ResponseBody String addCustomer(@RequestBody String jsonCustomer) throws Exception, JsonMappingException, JsonProcessingException{
-        
-        System.out.println(jsonCustomer.toString());
-        
+    public @ResponseBody String addCustomer(@RequestBody CustomerDto customerDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Customer customer = objectMapper.readValue(jsonCustomer, Customer.class);
-            List <Address> addresses = customer.getAddresses();
-            for (int i=0; i<addresses.size(); i++){
-                addresses.get(i).setCustomer(customer);
-            }
-            customer.setAddresses(addresses);
+            Customer customer = convertToEntity(customerDto);
             customer = customerService.addNewCustomer(customer);
             // return inserted customer id
             return (customer.getId().toString());
         }catch(Exception e){
             throw e;
-            //return "-1";
         }
     }
 
 
-
-
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/{id}")
-    public @ResponseBody String updateCustomer(@PathVariable("id") Long id, @RequestBody String jsonCustomer) throws Exception, JsonMappingException, JsonProcessingException{
+    public @ResponseBody CustomerDto updateCustomer(@PathVariable("id") Long id, @RequestBody CustomerDto customerDto) throws Exception, JsonMappingException, JsonProcessingException{
         
         try{
-            Customer customer = objectMapper.readValue(jsonCustomer, Customer.class);
+            Customer customer = convertToEntity(customerDto);
             Customer updatedCustomer = customerService.updateCustomer(id, customer);
-            return (updatedCustomer.toString());
+            return (convertToDto(updatedCustomer));
         }catch(Exception e){
-            return "-1";
+            throw e;
         }
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping("/{customerId}/address")
-    public @ResponseBody String addNewAddress(@PathVariable("customerId") Long customerId, @RequestBody String jsonAddress) throws Exception, JsonMappingException, JsonProcessingException{
+    public @ResponseBody AddressDto addNewAddress(@PathVariable("customerId") Long customerId, @RequestBody AddressDto addressDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Address address = objectMapper.readValue(jsonAddress, Address.class);
+            Address address = convertToEntity(addressDto);
             Address createdAddress = customerService.addNewAddress(customerId, address);
-            return (createdAddress.toString());
+            return (convertToDto(createdAddress));
         }catch(Exception e){
-            return "-1";
+            throw e;
         }
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PutMapping("/{customerId}/address/{addressId}")
-    public @ResponseBody String updateAddress(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId, @RequestBody String jsonAddress) throws Exception, JsonMappingException, JsonProcessingException{
+    public @ResponseBody AddressDto updateAddress(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId, @RequestBody AddressDto addressDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Address address = objectMapper.readValue(jsonAddress, Address.class);
+            Address address = convertToEntity(addressDto);
             Address updatedAddress = customerService.updateAddress(customerId, addressId, address);
-            return (updatedAddress.toString());
+            return (convertToDto(updatedAddress));
         }catch(Exception e){
-            return "-1";
+            throw e;
         }
     }
 
 
 
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
-    public String getCustomer(){
+    public List<CustomerDto> getCustomers(){
         List<Customer> customers = customerService.getAllCustomers();
-        return customers.toString();
+        return convertToDto(customers);
     }
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
-    public String getCustomerOne(@PathVariable("id") Long id){
+    public CustomerDto getCustomer(@PathVariable("id") Long id) throws Exception{
         Customer customer;
         try{
             customer = customerService.getCustomerById(id);
+            return convertToDto(customer);
         }catch(Exception e){
-            return e.getMessage().toString();
+            throw e;
         }
-        return customer.toString();
+        
     }
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{id}")
     public String deleteCustomer(@PathVariable("id") Long id){
         boolean result = customerService.deleteCustomer(id);
@@ -144,7 +130,6 @@ public class CustomerController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{customerId}/address/{addressId}")
     public String deleteAddress(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId){
         boolean result = customerService.deleteAddress(customerId, addressId);
@@ -155,4 +140,38 @@ public class CustomerController {
         }
     }
 
+
+
+    private CustomerDto convertToDto(Customer customer){
+        return (modelMapper.map(customer, CustomerDto.class));
+    }
+
+    private Customer convertToEntity(CustomerDto customerDto){
+        return (modelMapper.map(customerDto, Customer.class));
+    }
+
+    private AddressDto convertToDto(Address address){
+        return (modelMapper.map(address, AddressDto.class));
+    }
+
+    private Address convertToEntity(AddressDto addressDto){
+        return (modelMapper.map(addressDto, Address.class));
+    }
+
+    private List<CustomerDto> convertToDto(List<Customer> customers){
+        List<CustomerDto> customerDtos = customers.stream().map(customer -> convertToDto(customer)).collect(Collectors.toList());
+        return (customerDtos);
+    }
+
+    // private List<Customer> convertToEntity(List<CustomerDto> customerDtos){
+    //     List<Customer> customers = customerDtos.stream().map(customerDto -> convertToEntity(customerDto)).collect(Collectors.toList());
+    //     return (customers);
+    // }
+
+    
+
+
+
 }
+
+

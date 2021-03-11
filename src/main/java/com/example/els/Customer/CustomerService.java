@@ -1,7 +1,6 @@
 package com.example.els.Customer;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +17,11 @@ public class CustomerService {
 
 
     public Customer addNewCustomer(Customer customer){
+        List <Address> addresses = customer.getAddresses();
+        for (int i=0; i<addresses.size(); i++){
+            addresses.get(i).setCustomer(customer);
+        }
+        customer.setAddresses(addresses);
         customerRepository.save(customer);
         return customer;
     }
