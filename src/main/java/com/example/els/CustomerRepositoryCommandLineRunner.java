@@ -9,6 +9,8 @@
 // import com.example.els.Customer.Customer;
 // import com.example.els.Customer.CustomerRepository;
 
+// import com.example.els.User.*;
+
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,30 @@
 //     @Autowired
 //     private AddressRepository addressRepository;
 
+//     @Autowired
+//     private UserRepository userRepository;
+
+//     @Autowired
+//     private UserService userService;
+
 
 
 //     @Override
 //     public void run(String... args) throws Exception {
+
+//         // User newUser = new User("employee", "one", "employeeOne", "employeeOne", "963852741", "employee1@els.com", "employee");
+//         // log.info("New user is created "+newUser);
+//         // userRepository.save(newUser);
+//         // userService.addNewUser(newUser);
+
+//         // log.info(userRepository.findAll().get(0).toString());
+
+
+//         // newUser = new User("employee", "two", "employeeTwo", "employeeTwo", "963852741", "employee2@els.com", "employee");
+//         // userService.addNewUser(newUser);
+
+//         // newUser = new User("manager", "one", "managerOne", "managerOne", "963852741", "manager1@els.com", "manager");
+//         // userService.addNewUser(newUser);
 
 
 //         // Customer customer = new Customer("navid", "bamdad roshan", "nbamdadroshan@yahoo.com", "+95874663", Arrays.asList());
