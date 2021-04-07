@@ -9,7 +9,7 @@
 // import com.example.els.Customer.Customer;
 // import com.example.els.Customer.CustomerRepository;
 
-// import com.example.els.User.*;
+// import com.example.els.user.*;
 
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;

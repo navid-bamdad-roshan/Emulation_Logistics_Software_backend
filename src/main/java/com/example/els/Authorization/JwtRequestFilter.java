@@ -1,4 +1,4 @@
-package com.example.els.Authorization;
+package com.example.els.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,8 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.els.SpringSecurity.JwtUtil;
-import com.example.els.SpringSecurity.MyUserDetailsService;
+import com.example.els.springsecurity.JwtUtil;
+import com.example.els.springsecurity.MyUserDetailsService;
 
 import java.io.IOException;
 

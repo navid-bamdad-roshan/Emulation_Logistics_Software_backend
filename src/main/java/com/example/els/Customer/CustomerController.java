@@ -1,7 +1,7 @@
-package com.example.els.Customer;
+package com.example.els.customer;
 
 
-import com.example.els.Address.AddressDto;
+import com.example.els.address.AddressDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 

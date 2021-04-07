@@ -1,4 +1,4 @@
-package com.example.els.Address;
+package com.example.els.address;
 
 public class AddressDto {
 

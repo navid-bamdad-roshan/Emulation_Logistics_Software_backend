@@ -1,7 +1,7 @@
-package com.example.els.Authentication;
+package com.example.els.authentication;
 
-import com.example.els.SpringSecurity.JwtUtil;
-import com.example.els.SpringSecurity.MyUserDetailsService;
+import com.example.els.springsecurity.JwtUtil;
+import com.example.els.springsecurity.MyUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

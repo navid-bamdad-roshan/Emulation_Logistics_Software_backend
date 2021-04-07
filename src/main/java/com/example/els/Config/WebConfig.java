@@ -1,4 +1,4 @@
-package com.example.els.Config;
+package com.example.els.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -20,17 +20,6 @@ public class WebConfig implements WebMvcConfigurer {
                 //.allowCredentials(true);
     
             }
-
-
-    // @Override
-    // public void addCorsMappings(CorsRegistry registry) {
-    //     registry.addMapping("/**")
-    //             .allowedOrigins("http://localhost:3000")
-    //             .allowedMethods("GET", "POST", "PUT", "DELETE")
-    //             .allowedHeaders("Authorization")
-    //             .allowCredentials(true);                      
-    // }
-
 
 
     @Bean

@@ -1,8 +1,8 @@
-package com.example.els.SpringSecurity;
+package com.example.els.springsecurity;
 
 import java.util.Arrays;
 
-import com.example.els.Authorization.JwtRequestFilter;
+import com.example.els.authorization.JwtRequestFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

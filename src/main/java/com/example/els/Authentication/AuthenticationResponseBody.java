@@ -1,4 +1,4 @@
-package com.example.els.Authentication;
+package com.example.els.authentication;
 
 public class AuthenticationResponseBody {
 

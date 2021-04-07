@@ -1,16 +1,16 @@
-package com.example.els.Customer;
+package com.example.els.customer;
 
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.els.address.Address;
+import com.example.els.address.AddressDto;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.els.Address.Address;
-import com.example.els.Address.AddressDto;
 
 @Service
 public class CustomerService {

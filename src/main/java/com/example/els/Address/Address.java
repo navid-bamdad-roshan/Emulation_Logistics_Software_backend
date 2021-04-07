@@ -1,7 +1,4 @@
-package com.example.els.Address;
-
-import com.example.els.Customer.Customer;
-
+package com.example.els.address;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.example.els.customer.Customer;
 
 
 @Entity

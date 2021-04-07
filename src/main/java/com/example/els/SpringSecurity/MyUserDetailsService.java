@@ -1,10 +1,10 @@
-package com.example.els.SpringSecurity;
+package com.example.els.springsecurity;
 
 import java.util.ArrayList;
 
-import com.example.els.User.UserService;
+import com.example.els.user.UserService;
 
-import com.example.els.User.User;
+import com.example.els.user.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.core.userdetails.User;

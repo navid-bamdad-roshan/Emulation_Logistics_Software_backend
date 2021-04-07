@@ -1,4 +1,4 @@
-package com.example.els.Address;
+package com.example.els.address;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

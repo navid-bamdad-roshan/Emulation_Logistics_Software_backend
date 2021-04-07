@@ -1,4 +1,4 @@
-package com.example.els.SpringSecurity;
+package com.example.els.springsecurity;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

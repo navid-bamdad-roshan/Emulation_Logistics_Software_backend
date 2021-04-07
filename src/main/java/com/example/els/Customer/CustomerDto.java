@@ -1,8 +1,8 @@
-package com.example.els.Customer;
+package com.example.els.customer;
 
 import java.util.List;
 
-import com.example.els.Address.AddressDto;
+import com.example.els.address.AddressDto;
 
 public class CustomerDto {
 

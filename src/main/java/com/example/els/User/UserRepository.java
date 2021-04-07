@@ -1,4 +1,4 @@
-package com.example.els.User;
+package com.example.els.user;
 
 import java.util.List;
 
