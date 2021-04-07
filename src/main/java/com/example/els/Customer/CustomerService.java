@@ -3,11 +3,14 @@ package com.example.els.Customer;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.els.Address.Address;
+import com.example.els.Address.AddressDto;
 
 @Service
 public class CustomerService {
@@ -15,8 +18,12 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public Customer addNewCustomer(Customer customer){
+
+    public Customer addNewCustomer(CustomerDto customerDto){
+        Customer customer = modelMapper.map(customerDto, Customer.class);
         List <Address> addresses = customer.getAddresses();
         for (int i=0; i<addresses.size(); i++){
             addresses.get(i).setCustomer(customer);
@@ -26,7 +33,7 @@ public class CustomerService {
         return customer;
     }
 
-    public Customer getCustomerById(Long customerId) throws Exception{
+    public CustomerDto getCustomerById(Long customerId) throws Exception{
         Optional<Customer> opCustomer = customerRepository.findById(customerId);
         Customer customer;
         try {
@@ -37,15 +44,17 @@ public class CustomerService {
         catch(Exception e) {
             throw e;
         }
-        return customer;
+        return modelMapper.map(customer, CustomerDto.class);
     }
 
-    public List<Customer> getAllCustomers(){
-        List<Customer> customers = customerRepository.findAll(); 
-        return customers;
+    public List<CustomerDto> getAllCustomers(){
+        List<Customer> customers = customerRepository.findAll();
+        List<CustomerDto> customersDto = customers.stream().map(customer -> modelMapper.map(customer, CustomerDto.class)).collect(Collectors.toList());
+        return customersDto;
     }
 
-    public Customer updateCustomer(Long id, Customer updatedCustomer){
+    public CustomerDto updateCustomer(Long id, CustomerDto updatedCustomerDto){
+        Customer updatedCustomer = modelMapper.map(updatedCustomerDto, Customer.class);
         Customer customer = customerRepository.findById(id).get();
         if (customer.getFirstName() != updatedCustomer.getFirstName()){
             customer.setFirstName(updatedCustomer.getFirstName());
@@ -60,11 +69,13 @@ public class CustomerService {
             customer.setPhone(updatedCustomer.getPhone());
         }
         customerRepository.save(customer);
-        return customer;
+        return modelMapper.map(customer, CustomerDto.class);
     }
 
 
-    public Address updateAddress(Long customerId, Long addressId, Address updatedAddress) throws Exception{
+    public AddressDto updateAddress(Long customerId, Long addressId, AddressDto updatedAddressDto) throws Exception{
+
+        Address updatedAddress = modelMapper.map(updatedAddressDto, Address.class);
         Customer customer = customerRepository.findById(customerId).get();
 
         List<Address> addresses = customer.getAddresses();
@@ -90,15 +101,16 @@ public class CustomerService {
                     address.setAddress(updatedAddress.getAddress());
                 }
                 customerRepository.save(customer);
-                return address;
+                return modelMapper.map(address, AddressDto.class);
             }
         }
         throw new Exception("such address does not exist!");
     }
 
 
-    public Address addNewAddress(Long customerId, Address newAddress) throws Exception{
+    public AddressDto addNewAddress(Long customerId, AddressDto newAddressDto) throws Exception{
         try{
+            Address newAddress = modelMapper.map(newAddressDto, Address.class);
             Customer customer = customerRepository.findById(customerId).get();
 
             List<Address> addresses = customer.getAddresses();
@@ -110,7 +122,7 @@ public class CustomerService {
             customerRepository.save(customer);
 
             addresses = customer.getAddresses();
-            return addresses.get(addresses.size()-1);
+            return modelMapper.map(addresses.get(addresses.size()-1), AddressDto.class);
         }catch(Exception e){
             throw e;
         }

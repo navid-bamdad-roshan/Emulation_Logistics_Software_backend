@@ -1,18 +1,13 @@
 package com.example.els.Customer;
 
 
-import com.example.els.Address.Address;
 import com.example.els.Address.AddressDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.hibernate.internal.build.AllowPrintStacktrace;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,22 +29,10 @@ public class CustomerController {
     private CustomerService customerService;
 
 
-    // @Autowired
-    // private CustomerRepository customerRepository;
-
-    // @Autowired
-    // private AddressRepository addressRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-
-
     @PostMapping("")
     public @ResponseBody String addCustomer(@RequestBody CustomerDto customerDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Customer customer = convertToEntity(customerDto);
-            customer = customerService.addNewCustomer(customer);
+            Customer customer = customerService.addNewCustomer(customerDto);
             // return inserted customer id
             return (customer.getId().toString());
         }catch(Exception e){
@@ -62,9 +45,8 @@ public class CustomerController {
     public @ResponseBody CustomerDto updateCustomer(@PathVariable("id") Long id, @RequestBody CustomerDto customerDto) throws Exception, JsonMappingException, JsonProcessingException{
         
         try{
-            Customer customer = convertToEntity(customerDto);
-            Customer updatedCustomer = customerService.updateCustomer(id, customer);
-            return (convertToDto(updatedCustomer));
+            CustomerDto updatedCustomerDto = customerService.updateCustomer(id, customerDto);
+            return (updatedCustomerDto);
         }catch(Exception e){
             throw e;
         }
@@ -75,9 +57,8 @@ public class CustomerController {
     @PostMapping("/{customerId}/address")
     public @ResponseBody AddressDto addNewAddress(@PathVariable("customerId") Long customerId, @RequestBody AddressDto addressDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Address address = convertToEntity(addressDto);
-            Address createdAddress = customerService.addNewAddress(customerId, address);
-            return (convertToDto(createdAddress));
+            AddressDto createdAddressDto = customerService.addNewAddress(customerId, addressDto);
+            return (createdAddressDto);
         }catch(Exception e){
             throw e;
         }
@@ -88,9 +69,8 @@ public class CustomerController {
     @PutMapping("/{customerId}/address/{addressId}")
     public @ResponseBody AddressDto updateAddress(@PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId, @RequestBody AddressDto addressDto) throws Exception, JsonMappingException, JsonProcessingException{
         try{
-            Address address = convertToEntity(addressDto);
-            Address updatedAddress = customerService.updateAddress(customerId, addressId, address);
-            return (convertToDto(updatedAddress));
+            AddressDto updatedAddressDto = customerService.updateAddress(customerId, addressId, addressDto);
+            return (updatedAddressDto);
         }catch(Exception e){
             throw e;
         }
@@ -100,18 +80,16 @@ public class CustomerController {
 
     @GetMapping("")
     public List<CustomerDto> getCustomers(){
-        List<Customer> customers = customerService.getAllCustomers();
-        return convertToDto(customers);
+        List<CustomerDto> customersDto = customerService.getAllCustomers();
+        return customersDto;
     }
 
 
 
     @GetMapping("/{id}")
     public CustomerDto getCustomer(@PathVariable("id") Long id) throws Exception{
-        Customer customer;
         try{
-            customer = customerService.getCustomerById(id);
-            return convertToDto(customer);
+            return customerService.getCustomerById(id);
         }catch(Exception e){
             throw e;
         }
@@ -141,39 +119,6 @@ public class CustomerController {
             return "error";
         }
     }
-
-
-
-    private CustomerDto convertToDto(Customer customer){
-        return (modelMapper.map(customer, CustomerDto.class));
-    }
-
-    private Customer convertToEntity(CustomerDto customerDto){
-        return (modelMapper.map(customerDto, Customer.class));
-    }
-
-    private AddressDto convertToDto(Address address){
-        return (modelMapper.map(address, AddressDto.class));
-    }
-
-    private Address convertToEntity(AddressDto addressDto){
-        return (modelMapper.map(addressDto, Address.class));
-    }
-
-    private List<CustomerDto> convertToDto(List<Customer> customers){
-        List<CustomerDto> customerDtos = customers.stream().map(customer -> convertToDto(customer)).collect(Collectors.toList());
-        return (customerDtos);
-    }
-
-    // private List<Customer> convertToEntity(List<CustomerDto> customerDtos){
-    //     List<Customer> customers = customerDtos.stream().map(customerDto -> convertToEntity(customerDto)).collect(Collectors.toList());
-    //     return (customers);
-    // }
-
-    
-
-
-
 }
 
 
