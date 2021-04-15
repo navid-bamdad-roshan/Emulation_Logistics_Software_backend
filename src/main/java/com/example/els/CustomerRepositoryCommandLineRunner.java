@@ -75,6 +75,13 @@
 //         // log.info(receiver.getFirstName());
 //         // log.info(receiver.getAddresses().get(0).getCity());
 
+//         List<OrderDetailsDto> orderDetailsDtos = orderRepository.findAllOrderDetails();
+//         log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         log.info(orderDetailsDtos.get(0).getReceiverFirstName());
+//         log.info(orderDetailsDtos.get(0).getSenderFirstName());
+//         log.info("package count: "+orderDetailsDtos.get(0).getPackageCount().toString());
+//         log.info("shipment count: "+orderDetailsDtos.get(0).getShipmentsCount().toString());
+
 
 
 
