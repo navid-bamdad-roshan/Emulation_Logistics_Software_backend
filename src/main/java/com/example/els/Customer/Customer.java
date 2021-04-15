@@ -115,8 +115,14 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "{\"id\":\"" + id + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"phone\":\"" + phone + "\",\"email\":\"" + email  + "\",\"addresses\":" + addresses.toString() + "}" ;
+        return "Customer [addresses=" + addresses + ", email=" + email + ", firstName=" + firstName + ", id=" + id
+                + ", lastName=" + lastName + ", phone=" + phone + "]";
     }
+
+    // @Override
+    // public String toString() {
+    //     return "{\"id\":\"" + id + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"phone\":\"" + phone + "\",\"email\":\"" + email  + "\",\"addresses\":" + addresses.toString() + "}" ;
+    // }
 
 
 

@@ -4,11 +4,18 @@
 // import java.util.Arrays;
 // import java.util.List;
 
-// import com.example.els.Address.Address;
-// import com.example.els.Address.AddressRepository;
-// import com.example.els.Customer.Customer;
-// import com.example.els.Customer.CustomerRepository;
-
+// import com.example.els.address.Address;
+// import com.example.els.address.AddressRepository;
+// import com.example.els.customer.Customer;
+// import com.example.els.customer.CustomerRepository;
+// import com.example.els.customer.CustomerService;
+// import com.example.els.order.Order;
+// import com.example.els.order.OrderDetailsDto;
+// import com.example.els.order.OrderRepository;
+// import com.example.els.shipment.Shipment;
+// import com.example.els.shipment.ShipmentRepository;
+// import com.example.els.shipmentpackage.Package;
+// import com.example.els.shipmentpackage.PackageRepository;
 // import com.example.els.user.*;
 
 // import org.slf4j.Logger;
@@ -21,8 +28,10 @@
 // import java.util.Optional;
 
 // import javax.persistence.EntityManager;
+// import javax.transaction.Transactional;
 
 // @Component
+// @Transactional
 // public class CustomerRepositoryCommandLineRunner implements CommandLineRunner {
 
 //     private static final Logger log = LoggerFactory.getLogger(CustomerRepositoryCommandLineRunner.class);
@@ -31,18 +40,56 @@
 //     private CustomerRepository customerRepository;
 
 //     @Autowired
+//     private CustomerService customerService;
+
+//     @Autowired
 //     private AddressRepository addressRepository;
 
 //     @Autowired
 //     private UserRepository userRepository;
 
 //     @Autowired
-//     private UserService userService;
+//     private OrderRepository orderRepository;
 
+//     @Autowired
+//     private ShipmentRepository shipmentRepository;
+
+//     @Autowired
+//     private PackageRepository packageRepository;
+
+//     @Autowired
+//     private UserService userService;
 
 
 //     @Override
 //     public void run(String... args) throws Exception {
+
+//         // Customer sender = customerRepository.findById(30L).get();
+
+
+//         // Customer receiver = customerRepository.findById(1L).get();
+
+
+
+//         // log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         // log.info(receiver.getFirstName());
+//         // log.info(receiver.getAddresses().get(0).getCity());
+
+
+
+
+//         // //Package p = new Package(null, 20D, 20D, 20D, 20D, "no tag", null);
+//         // List<Shipment> shipments = Arrays.asList();
+//         // //Order o = new Order(sender, receiver, "lllkkk", Arrays.asList(), shipments);
+
+//         // Package p = packageRepository.findById(56L).get();
+//         // Order o = orderRepository.findById(57L).get();
+//         // p.setOrder(o);
+
+
+//         //p.setOrder(o);
+//         //packageRepository.save(p);
+//         //orderRepository.save(o);
 
 //         // User newUser = new User("employee", "one", "employeeOne", "employeeOne", "963852741", "employee1@els.com", "employee");
 //         // log.info("New user is created "+newUser);

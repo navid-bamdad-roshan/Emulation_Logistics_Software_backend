@@ -12,11 +12,9 @@ import javax.persistence.Table;
 import com.example.els.customer.Customer;
 
 
-@Entity
+@Entity(name="addresses")
 @Table(name="addresses")
 public class Address {
-
-
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
