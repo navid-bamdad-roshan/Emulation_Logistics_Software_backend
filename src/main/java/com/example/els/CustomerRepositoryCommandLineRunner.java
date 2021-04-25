@@ -12,6 +12,7 @@
 // import com.example.els.order.Order;
 // import com.example.els.order.OrderDetailsDto;
 // import com.example.els.order.OrderRepository;
+// import com.example.els.order.OrderService;
 // import com.example.els.shipment.Shipment;
 // import com.example.els.shipment.ShipmentRepository;
 // import com.example.els.shipmentpackage.Package;
@@ -52,6 +53,9 @@
 //     private OrderRepository orderRepository;
 
 //     @Autowired
+//     private OrderService orderService;
+
+//     @Autowired
 //     private ShipmentRepository shipmentRepository;
 
 //     @Autowired
@@ -75,13 +79,20 @@
 //         // log.info(receiver.getFirstName());
 //         // log.info(receiver.getAddresses().get(0).getCity());
 
-//         List<OrderDetailsDto> orderDetailsDtos = orderRepository.findAllOrderDetails();
+//         // List<OrderDetailsDto> orderDetailsDtos = orderRepository.findAllOrderDetails();
+//         // log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         // log.info(orderDetailsDtos.get(0).getReceiverFirstName());
+//         // log.info(orderDetailsDtos.get(0).getSenderFirstName());
+//         // log.info("package count: "+orderDetailsDtos.get(0).getPackageCount().toString());
+//         // log.info("shipment count: "+orderDetailsDtos.get(0).getShipmentsCount().toString());
+
+//         List<OrderDetailsDto> orderDetailsDtos = orderService.getAllOrderDetails();
 //         log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
 //         log.info(orderDetailsDtos.get(0).getReceiverFirstName());
 //         log.info(orderDetailsDtos.get(0).getSenderFirstName());
 //         log.info("package count: "+orderDetailsDtos.get(0).getPackageCount().toString());
 //         log.info("shipment count: "+orderDetailsDtos.get(0).getShipmentsCount().toString());
-
+//         log.info("all count: "+orderDetailsDtos.size());
 
 
 
