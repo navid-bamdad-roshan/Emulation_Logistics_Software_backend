@@ -20,7 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //    List<OrderDetailsDto> findAllOrderDetails();
 
 
-@Query("select new com.example.els.order.OrderDetailsDto(o.id, s.firstName, s.lastName, r.firstName, r.lastName, o.description, count(p.id), count(sh.id))"//, isnull(count(p.id), 0)
+@Query("select new com.example.els.order.OrderDetailsDto(o.id, s.firstName, s.lastName, r.firstName, r.lastName, o.description, count( DISTINCT p.id), count( DISTINCT sh.id))"//, isnull(count(p.id), 0)
 +"from Order o "
    +"left join o.sender s " 
    +"left join o.receiver r "

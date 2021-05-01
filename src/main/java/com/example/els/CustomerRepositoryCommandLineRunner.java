@@ -95,10 +95,114 @@
 //         log.info("all count: "+orderDetailsDtos.size());
 
 
+//         log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         log.info(orderDetailsDtos.get(1).getReceiverFirstName());
+//         log.info(orderDetailsDtos.get(1).getSenderFirstName());
+//         log.info("package count: "+orderDetailsDtos.get(1).getPackageCount().toString());
+//         log.info("shipment count: "+orderDetailsDtos.get(1).getShipmentsCount().toString());
+//         log.info("all count: "+orderDetailsDtos.size());
 
-//         // //Package p = new Package(null, 20D, 20D, 20D, 20D, "no tag", null);
-//         // List<Shipment> shipments = Arrays.asList();
-//         // //Order o = new Order(sender, receiver, "lllkkk", Arrays.asList(), shipments);
+
+//         log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         log.info(orderDetailsDtos.get(2).getReceiverFirstName());
+//         log.info(orderDetailsDtos.get(2).getSenderFirstName());
+//         log.info("package count: "+orderDetailsDtos.get(2).getPackageCount().toString());
+//         log.info("shipment count: "+orderDetailsDtos.get(2).getShipmentsCount().toString());
+//         log.info("all count: "+orderDetailsDtos.size());
+
+
+//         log.info("LLLLLLLOOOOOOAAAAAADDDDDDEEEEEEDDDDDD");
+//         log.info(orderDetailsDtos.get(3).getReceiverFirstName());
+//         log.info(orderDetailsDtos.get(3).getSenderFirstName());
+//         log.info("package count: "+orderDetailsDtos.get(3).getPackageCount().toString());
+//         log.info("shipment count: "+orderDetailsDtos.get(3).getShipmentsCount().toString());
+//         log.info("all count: "+orderDetailsDtos.size());
+
+
+
+//         // Package p1 = new Package(null, 45D, 20D, 10D, 70D, "fragile", null);
+//         // Package p2 = new Package(null, 100D, 50D, 40D, 150D, "no tag", null);
+//         // Package p3 = new Package(null, 65D, 20D, 10D, 90D, "fragile", null);
+//         // Package p4 = new Package(null, 10D, 10D, 10D, 20D, "no tag", null);
+
+//         // Package p5 = new Package(null, 50D, 20D, 10D, 70D, "no tag", null);
+//         // Package p6 = new Package(null, 150D, 70D, 40D, 250D, "no tag", null);
+//         // Package p7 = new Package(null, 165D, 20D, 10D, 390D, "no tag", null);
+//         // Package p8 = new Package(null, 50D, 50D, 10D, 70D, "no tag", null);
+
+//         // Package p9 = new Package(null, 500D, 200D, 100D, 1000D, "no tag", null);
+//         // Package p10 = new Package(null, 500D, 300D, 100D, 1300D, "no tag", null);
+
+
+//         // Shipment sh1 = new Shipment(Arrays.asList() ,null);
+//         // Shipment sh2 = new Shipment(Arrays.asList() ,null);
+//         // Shipment sh3 = new Shipment(Arrays.asList() ,null);
+
+
+        
+//         // Customer sender = customerRepository.findById(5L).get();
+//         // Customer receiver = customerRepository.findById(6L).get();
+//         // Order o1 = new Order(sender, receiver, "Description one", Arrays.asList(p9, p10), Arrays.asList(sh2, sh3));
+//         // p9.setOrder(o1);
+//         // p10.setOrder(o1);
+//         // sh2.setOrders(Arrays.asList(o1));
+//         // sh3.setOrders(Arrays.asList(o1));
+//         // packageRepository.save(p9);
+//         // packageRepository.save(p10);
+//         // //shipmentRepository.save(sh2);
+//         // shipmentRepository.save(sh3);
+//         // orderRepository.save(o1);
+
+
+//         // Customer sender2 = customerRepository.findById(44L).get();
+//         // Customer receiver2 = customerRepository.findById(46L).get();
+//         // Order o2 = new Order(sender2, receiver2, "Description two", Arrays.asList(p1, p2, p3, p4, p5), Arrays.asList(sh1));
+//         // p1.setOrder(o2);
+//         // p2.setOrder(o2);
+//         // p3.setOrder(o2);
+//         // p4.setOrder(o2);
+//         // p5.setOrder(o2);
+//         // sh1.setOrders(Arrays.asList(o2));
+//         // packageRepository.save(p1);
+//         // packageRepository.save(p2);
+//         // packageRepository.save(p3);
+//         // packageRepository.save(p4);
+//         // packageRepository.save(p5);
+//         // // shipmentRepository.save(sh1);
+//         // orderRepository.save(o2);
+
+
+
+//         // Customer sender3 = customerRepository.findById(35L).get();
+//         // Customer receiver3 = customerRepository.findById(48L).get();
+//         // Order o3 = new Order(sender3, receiver3, "Description two", Arrays.asList(p6, p7, p8), Arrays.asList(sh1, sh2));
+//         // p6.setOrder(o3);
+//         // p7.setOrder(o3);
+//         // p8.setOrder(o3);
+//         // sh1.setOrders(Arrays.asList(o2, o3));
+//         // sh2.setOrders(Arrays.asList(o1, o3));
+//         // packageRepository.save(p6);
+//         // packageRepository.save(p7);
+//         // packageRepository.save(p8);
+//         // shipmentRepository.save(sh1);
+//         // shipmentRepository.save(sh2);
+//         // orderRepository.save(o3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//         List<Shipment> shipments = Arrays.asList();
+//         //Order o = new Order(sender, receiver, "lllkkk", Arrays.asList(), shipments);
 
 //         // Package p = packageRepository.findById(56L).get();
 //         // Order o = orderRepository.findById(57L).get();
