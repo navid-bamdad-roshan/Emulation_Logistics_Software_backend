@@ -1,13 +1,8 @@
 package com.example.els.springsecurity;
-
 import java.util.ArrayList;
-
 import com.example.els.user.UserService;
-
 import com.example.els.user.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,12 +29,5 @@ public class MyUserDetailsService implements UserDetailsService{
                 throw new UsernameNotFoundException("user_not_found");
             }
         }
-
-
-        
-
-
-        //return new User("employee", "password", new ArrayList<>());
     }
-    
 }

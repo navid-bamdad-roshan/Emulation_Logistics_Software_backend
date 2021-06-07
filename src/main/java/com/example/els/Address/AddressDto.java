@@ -3,7 +3,6 @@ package com.example.els.address;
 public class AddressDto {
 
     private Long id;
-
     private String country;
     private String state;
     private String city;
@@ -77,12 +76,6 @@ public class AddressDto {
         this.address = address;
     }
 
-    // @Override
-    // public String toString() {
-    //     return ("{\"id\":\"" + id.toString() + "\", \"address\":\"" + address + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"id\":\"" + id
-    //             + "\", \"postalCode\":\"" + postalCode + "\", \"state\":\"" + state + "\"}");
-    // }
-
     public String getPostalCode() {
         return postalCode;
     }
@@ -90,8 +83,4 @@ public class AddressDto {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
-
-
-
-    
 }

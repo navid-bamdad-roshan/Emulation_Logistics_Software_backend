@@ -117,8 +117,4 @@ public class OrderDetailsDto {
     public void setShipmentsCount(Long shipmentsCount) {
         this.shipmentsCount = shipmentsCount;
     }
-
-
-    
-
 }

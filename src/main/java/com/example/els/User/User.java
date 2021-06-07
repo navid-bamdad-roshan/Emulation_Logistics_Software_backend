@@ -55,9 +55,6 @@ public class User {
 
     public User(Long id, String firstName, String lastName, String username, String password, String phone, String email, String role) {
         super();
-        // if (id != null){
-        //     this.id = id;
-        // }
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

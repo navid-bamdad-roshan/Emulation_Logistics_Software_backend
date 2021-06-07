@@ -15,7 +15,6 @@ public class AuthenticationRequestBody{
 
     }
 
-
     public String getUsername() {
         return username;
     }

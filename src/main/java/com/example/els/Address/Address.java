@@ -27,7 +27,7 @@ public class Address {
     private String postalCode;
     private String address;
 
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -122,6 +122,4 @@ public class Address {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-    
 }

@@ -29,7 +29,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
  +"group by o.id ")
 List<OrderDetailsDto> findAllOrderDetails();
 
-
-
-
 }

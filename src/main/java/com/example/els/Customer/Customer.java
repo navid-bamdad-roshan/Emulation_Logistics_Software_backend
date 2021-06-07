@@ -59,7 +59,6 @@ public class Customer {
     @Column(name="phone")
     private String phone;
     
-    //@OneToMany(mappedBy = "customer", targetEntity = Address.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
@@ -118,13 +117,4 @@ public class Customer {
         return "Customer [addresses=" + addresses + ", email=" + email + ", firstName=" + firstName + ", id=" + id
                 + ", lastName=" + lastName + ", phone=" + phone + "]";
     }
-
-    // @Override
-    // public String toString() {
-    //     return "{\"id\":\"" + id + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName + "\",\"phone\":\"" + phone + "\",\"email\":\"" + email  + "\",\"addresses\":" + addresses.toString() + "}" ;
-    // }
-
-
-
-    
 }
